@@ -24,12 +24,14 @@ ansible>=10,<11
 # Hence we never want to install those versions.
 #
 # Note that the pip-audit pre-commit hook identifies a vulnerability
-# in ansible-core 2.16.13.
+# in ansible-core 2.16.13.  Normally we would pin ansible-core
+# accordingly (>2.16.13), but the above pin of ansible>=10 effectively
+# pins ansible-core to >=2.17 so that's what we do here.
 #
 # Note that any changes made to this dependency must also be made in
 # requirements.txt in cisagov/skeleton-packer and
 # .pre-commit-config.yaml in cisagov/skeleton-generic.
-ansible-core>2.16.13
+ansible-core>=2.17
 # With the release of molecule v5 there were some breaking changes so
 # we need to pin at v5 or newer. However, v5.0.0 had an internal
 # dependency issue so we must use the bugfix release as the actual
