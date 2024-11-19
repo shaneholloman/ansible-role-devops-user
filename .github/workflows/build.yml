@@ -199,10 +199,13 @@ jobs:
         scenario:
           - default
     steps:
-      - uses: GitHubSecurityLab/actions-permissions/monitor@v1
-        with:
-          # Uses the organization variable unless overridden
-          config: ${{ vars.ACTIONS_PERMISSIONS_CONFIG }}
+      # With this task in place the GitHub runners run out of
+      # resources and crash.  See cisagov/skeleton-ansible-role#211
+      # for more details.
+      # - uses: GitHubSecurityLab/actions-permissions/monitor@v1
+      #   with:
+      #     # Uses the organization variable unless overridden
+      #     config: ${{ vars.ACTIONS_PERMISSIONS_CONFIG }}
       - id: harden-runner
         name: Harden the runner
         uses: step-security/harden-runner@v2
