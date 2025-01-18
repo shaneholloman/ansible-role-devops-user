@@ -177,7 +177,7 @@ jobs:
     permissions:
       # actions/checkout needs this to fetch code
       contents: read
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-${{ startsWith(matrix.architecture, 'arm') && '24.04-arm' || 'latest' }}
     strategy:
       fail-fast: false
       matrix:
