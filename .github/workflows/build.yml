@@ -271,9 +271,12 @@ jobs:
           molecule test
           --platform-name ${{ matrix.platform }}-${{ matrix.architecture }}
           --scenario-name ${{ matrix.scenario }}
+      # TODO: Remove the apt-get install command when possible.  See
+      # cisagov/skeleton-ansible-role#215 for more details.
       - name: Re-enable unix-chkpwd AppArmor profile
-        run: >-
+        run: |
           sudo aa-enforce /usr/sbin/unix_chkpwd
+          sudo apt-get install firefox passt
         if: ${{ startsWith(matrix.platform, 'fedora') }}
       - name: Setup tmate debug session
         uses: mxschmitt/action-tmate@v3
